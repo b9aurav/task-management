@@ -17,6 +17,11 @@ const theme = extendTheme({
         focusBorderColor: "brand.primary",
       },
     },
+    Select: {
+      defaultProps: {
+        focusBorderColor: "brand.primary",
+      },
+    },
     Button: {
       baseStyle: {
         borderRadius: "5px",
@@ -76,6 +81,14 @@ const theme = extendTheme({
         },
       },
     },
+    Badge: {
+      baseStyle:{
+        color: "white",
+        borderRadius: "16px",
+        padding: "0 10px",
+        textTransform: "capitalize",
+      }
+    }
   },
 });
 

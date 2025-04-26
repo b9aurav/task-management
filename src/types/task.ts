@@ -1,8 +1,8 @@
 export interface Task {
   id: string;
-  name: string;
+  title: string;
   description: string;
-  dueDate: string; // ISO format date string
+  dueDate: string;
   priority: "low" | "medium" | "high";
   status: "pending" | "in-progress" | "completed";
 }
