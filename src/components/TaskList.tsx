@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   Thead,
@@ -16,18 +16,45 @@ import { useTaskContext } from "@/context/TaskContext";
 
 const TaskList = ({
   searchQuery,
+  sortOrder,
+  filters,
   onEditTask,
   onDeleteTask,
 }: {
-  searchQuery: string,
+  searchQuery: string;
+  sortOrder: "asc" | "desc";
+  filters: { priority?: string; status?: string };
   onEditTask: (taskId: string) => void;
   onDeleteTask: (taskId: string) => void;
 }) => {
   const { tasks, editTask } = useTaskContext();
+  const [filteredTasks, setFilteredTasks] = useState(tasks);
 
-  const filteredTasks = tasks.filter((task) =>
-    task.title.toLowerCase().includes(searchQuery.toLowerCase())
-  );
+  useEffect(() => {
+    let updatedTasks = [...tasks];
+
+    if (searchQuery) {
+      updatedTasks = updatedTasks.filter((task) =>
+        task.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+    if (filters.priority) {
+      updatedTasks = updatedTasks.filter((task) =>
+        task.priority === filters.priority
+      );
+    }
+    if (filters.status) {
+      updatedTasks = updatedTasks.filter((task) => task.status === filters.status);
+    }
+
+    updatedTasks.sort((a, b) => {
+      const dateA = new Date(a.dueDate).getTime();
+      const dateB = new Date(b.dueDate).getTime();
+      return sortOrder === "asc" ? dateA - dateB : dateB - dateA;
+    });
+
+    setFilteredTasks(updatedTasks);
+  }, [tasks, searchQuery, sortOrder, filters]);
 
   const handlePriorityChange = (
     taskId: string,

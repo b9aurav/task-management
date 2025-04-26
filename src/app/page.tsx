@@ -25,8 +25,12 @@ export default function Home() {
     onOpen: onDeleteTaskOpen,
     onClose: onDeleteTaskClose,
   } = useDisclosure();
-  
+
   const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState<"asc" | "desc">("asc");
+  const [filters, setFilters] = useState<{ priority?: string; status?: string }>(
+    {}
+  );
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const { deleteTask } = useTaskContext();
 
@@ -51,9 +55,15 @@ export default function Home() {
   return (
     <>
       <Navbar onSearch={(query) => setSearchQuery(query)} />
-      <PageHeader onAddTaskModalOpen={onAddTaskOpen} />
+      <PageHeader
+        onAddTaskModalOpen={onAddTaskOpen}
+        onSort={(order) => setSortOrder(order)}
+        onFilter={(newFilters) => setFilters(newFilters)}
+      />
       <TaskList
         searchQuery={searchQuery}
+        sortOrder={sortOrder}
+        filters={filters}
         onEditTask={handleEditTask}
         onDeleteTask={handleDeleteTask}
       />
