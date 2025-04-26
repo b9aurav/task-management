@@ -87,11 +87,11 @@ const TaskList = ({
           <Thead>
             <Tr>
               <Th>SL.No</Th>
-              <Th>Title</Th>
-              <Th>Description</Th>
-              <Th>Due Date</Th>
-              <Th>Status</Th>
-              <Th>Priority</Th>
+              <Th width={"20%"}>Title</Th>
+              <Th width={"40%"}>Description</Th>
+              <Th width={"12%"}>Due Date</Th>
+              <Th width={"8%"}>Status</Th>
+              <Th width={"15%"}>Priority</Th>
               <Th></Th>
             </Tr>
           </Thead>
