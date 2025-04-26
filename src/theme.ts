@@ -12,6 +12,11 @@ const theme = extendTheme({
         focusBorderColor: "brand.primary",
       },
     },
+    Textarea: {
+      defaultProps: {
+        focusBorderColor: "brand.primary",
+      },
+    },
     Button: {
       baseStyle: {
         borderRadius: "5px",
