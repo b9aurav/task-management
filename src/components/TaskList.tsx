@@ -10,9 +10,11 @@ import {
   Badge,
   Select,
 } from "@chakra-ui/react";
+import { FaRegEdit } from "react-icons/fa";
+import { HiOutlineTrash } from "react-icons/hi";
 import { useTaskContext } from "@/context/TaskContext";
 
-const TaskList = () => {
+const TaskList = ({ onEditTask }: { onEditTask: (taskId: string) => void }) => {
   const { tasks, editTask } = useTaskContext();
 
   const handlePriorityChange = (
@@ -81,7 +83,16 @@ const TaskList = () => {
                     <option value="high">High</option>
                   </Select>
                 </Td>
-                <Td></Td>
+                <Td>
+                  <div className="flex gap-2 w-full justify-center items-center">
+                    <FaRegEdit
+                      size="24px"
+                      cursor="pointer"
+                      onClick={() => onEditTask(task.id)}
+                    />
+                    <HiOutlineTrash size="24px" cursor="pointer" />
+                  </div>
+                </Td>
               </Tr>
             ))}
           </Tbody>
