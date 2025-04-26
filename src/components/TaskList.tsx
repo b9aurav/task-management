@@ -15,13 +15,19 @@ import { HiOutlineTrash } from "react-icons/hi";
 import { useTaskContext } from "@/context/TaskContext";
 
 const TaskList = ({
+  searchQuery,
   onEditTask,
   onDeleteTask,
 }: {
+  searchQuery: string,
   onEditTask: (taskId: string) => void;
   onDeleteTask: (taskId: string) => void;
 }) => {
   const { tasks, editTask } = useTaskContext();
+
+  const filteredTasks = tasks.filter((task) =>
+    task.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const handlePriorityChange = (
     taskId: string,
@@ -55,7 +61,7 @@ const TaskList = ({
             </Tr>
           </Thead>
           <Tbody>
-            {tasks.map((task, index) => (
+            {filteredTasks.map((task, index) => (
               <Tr key={task.id}>
                 <Td>{index + 1}</Td>
                 <Td>{task.title}</Td>

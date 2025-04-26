@@ -10,12 +10,23 @@ import DeleteTask from "@/components/DeleteTask";
 import { useTaskContext } from "@/context/TaskContext";
 
 export default function Home() {
-  const { isOpen: isAddTaskOpen, onOpen: onAddTaskOpen, onClose: onAddTaskClose } =
-    useDisclosure();
-  const { isOpen: isEditTaskOpen, onOpen: onEditTaskOpen, onClose: onEditTaskClose } =
-    useDisclosure();
-  const { isOpen: isDeleteTaskOpen, onOpen: onDeleteTaskOpen, onClose: onDeleteTaskClose } =
-    useDisclosure();
+  const {
+    isOpen: isAddTaskOpen,
+    onOpen: onAddTaskOpen,
+    onClose: onAddTaskClose,
+  } = useDisclosure();
+  const {
+    isOpen: isEditTaskOpen,
+    onOpen: onEditTaskOpen,
+    onClose: onEditTaskClose,
+  } = useDisclosure();
+  const {
+    isOpen: isDeleteTaskOpen,
+    onOpen: onDeleteTaskOpen,
+    onClose: onDeleteTaskClose,
+  } = useDisclosure();
+  
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedTaskId, setSelectedTaskId] = useState<string | null>(null);
   const { deleteTask } = useTaskContext();
 
@@ -39,9 +50,13 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
+      <Navbar onSearch={(query) => setSearchQuery(query)} />
       <PageHeader onAddTaskModalOpen={onAddTaskOpen} />
-      <TaskList onEditTask={handleEditTask} onDeleteTask={handleDeleteTask} />
+      <TaskList
+        searchQuery={searchQuery}
+        onEditTask={handleEditTask}
+        onDeleteTask={handleDeleteTask}
+      />
       <AddTask isOpen={isAddTaskOpen} onClose={onAddTaskClose} />
       <EditTask
         isOpen={isEditTaskOpen}
