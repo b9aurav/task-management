@@ -17,12 +17,11 @@ import {
   
   const DeleteTask = ({ isOpen, onClose, onDelete }: DeleteTaskProps) => {
     return (
-      <Modal onClose={onClose} isOpen={isOpen} isCentered size="xl">
+      <Modal onClose={onClose} isOpen={isOpen} isCentered size={{ base: "sm", md: "xl" }}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader className="">Are you sure that you wish to delete this task?</ModalHeader>
           <ModalCloseButton />
-        
           <ModalFooter>
             <div className="flex w-full gap-2">
             <Button variant="outline" onClick={onClose} className="w-full">

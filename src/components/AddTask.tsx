@@ -50,7 +50,7 @@ const AddTask = ({
   };
 
   return (
-    <Modal onClose={onClose} isOpen={isOpen} isCentered size="xl">
+    <Modal onClose={onClose} isOpen={isOpen} isCentered size={{ base: "sm", md: "xl" }}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Add Task</ModalHeader>

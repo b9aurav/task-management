@@ -65,7 +65,7 @@ const EditTask = ({ isOpen, onClose, taskId }: EditTaskProps) => {
   };
 
   return (
-    <Modal onClose={onClose} isOpen={isOpen} isCentered size="xl">
+    <Modal onClose={onClose} isOpen={isOpen} isCentered size={{ base: "sm", md: "xl" }}>
       <ModalOverlay />
       <ModalContent>
         <ModalHeader>Edit Task</ModalHeader>
@@ -121,7 +121,9 @@ const EditTask = ({ isOpen, onClose, taskId }: EditTaskProps) => {
             <Button variant="outline" onClick={onClose} className="w-full">
               Cancel
             </Button>
-            <Button onClick={handleEditTask} className="w-full">Save Changes</Button>
+            <Button onClick={handleEditTask} className="w-full">
+              Edit Task
+            </Button>
           </div>
         </ModalFooter>
       </ModalContent>

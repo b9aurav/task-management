@@ -2,6 +2,7 @@ import {
   Button,
   Checkbox,
   Divider,
+  IconButton,
   Popover,
   PopoverArrow,
   PopoverBody,
@@ -57,7 +58,7 @@ const PageHeader = ({ onAddTaskModalOpen, onSort, onFilter }: props) => {
   };
 
   return (
-    <div className="w-full px-8 flex justify-between items-center">
+    <div className="w-full px-4 flex justify-between items-center">
       <text className="text-2xl font-bold">Tasks</text>
       <div className="gap-2 flex">
         <Button
@@ -67,11 +68,22 @@ const PageHeader = ({ onAddTaskModalOpen, onSort, onFilter }: props) => {
         >
           Add Task
         </Button>
-        <Popover>
+        <Popover placement="top-end">
           <PopoverTrigger>
-            <Button leftIcon={<BiSort />} variant="outline">
-              Sort
-            </Button>
+            <div>
+              <div className="md:hidden">
+                <IconButton
+                  aria-label="Sort"
+                  icon={<BiSort />}
+                  variant="outline"
+                />
+              </div>
+              <div className="sm:block hidden">
+                <Button leftIcon={<BiSort />} variant="outline">
+                  Sort
+                </Button>
+              </div>
+            </div>
           </PopoverTrigger>
           <PopoverContent>
             <PopoverArrow />
@@ -91,9 +103,20 @@ const PageHeader = ({ onAddTaskModalOpen, onSort, onFilter }: props) => {
         </Popover>
         <Popover placement="top-end">
           <PopoverTrigger>
-            <Button leftIcon={<BiFilter />} variant="outline">
-              Filter
-            </Button>
+            <div>
+              <div className="md:hidden">
+                <IconButton
+                  aria-label="Filter"
+                  icon={<BiFilter />}
+                  variant="outline"
+                />
+              </div>
+              <div className="sm:block hidden">
+                <Button leftIcon={<BiFilter />} variant="outline">
+                  Filter
+                </Button>
+              </div>
+            </div>
           </PopoverTrigger>
           <PopoverContent>
             <PopoverArrow />
