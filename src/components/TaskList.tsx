@@ -14,7 +14,13 @@ import { FaRegEdit } from "react-icons/fa";
 import { HiOutlineTrash } from "react-icons/hi";
 import { useTaskContext } from "@/context/TaskContext";
 
-const TaskList = ({ onEditTask }: { onEditTask: (taskId: string) => void }) => {
+const TaskList = ({
+  onEditTask,
+  onDeleteTask,
+}: {
+  onEditTask: (taskId: string) => void;
+  onDeleteTask: (taskId: string) => void;
+}) => {
   const { tasks, editTask } = useTaskContext();
 
   const handlePriorityChange = (
@@ -45,7 +51,7 @@ const TaskList = ({ onEditTask }: { onEditTask: (taskId: string) => void }) => {
               <Th>Due Date</Th>
               <Th>Status</Th>
               <Th>Priority</Th>
-              <Th></Th>
+              <Th>Actions</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -90,7 +96,11 @@ const TaskList = ({ onEditTask }: { onEditTask: (taskId: string) => void }) => {
                       cursor="pointer"
                       onClick={() => onEditTask(task.id)}
                     />
-                    <HiOutlineTrash size="24px" cursor="pointer" />
+                    <HiOutlineTrash
+                      size="24px"
+                      cursor="pointer"
+                      onClick={() => onDeleteTask(task.id)}
+                    />
                   </div>
                 </Td>
               </Tr>
